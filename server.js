@@ -41,6 +41,16 @@ var tables = [{
     email: "Muppet",
     phone: "976-8888",
     id: 13
+}, {
+    customerName: "Jenny",
+    email: "jenny@OHHHH.com",
+    phone: "867-5309",
+    id: 14
+}, {
+    customerName: "Florence Foster Jenkins",
+    email: "opera@mysingingsucks.com",
+    phone: "123-4567",
+    id: 15
 }];
 
 var waitlist = [];
