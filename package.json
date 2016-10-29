@@ -1,0 +1,16 @@
+{
+  "name": "waitlist",
+  "version": "1.0.0",
+  "description": "A table reservation app",
+  "main": "server.js",
+  "scripts": {
+    "test": "Hello",
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.14.0",
+    "body-parser": "^1.15.2"
+  },
+  "authors": "Cohra Mankey, Edgar Martin del Campo, Mitchel Wodka",
+  "license": "ISC"
+}
