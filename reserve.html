@@ -1,10 +1,13 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Reservation Page</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="style.css">
 </head>
+
 <body>
     <div class="container">
         <div class="row">
@@ -14,7 +17,8 @@
                     <hr>
                     <h2 class="text-center">Make your reservation</h2>
                     <br>
-                    <p class="text-center"><a class="btn btn-primary btn-lg btn-space" href="/tables" role="button"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> View Tables</a><a class="btn btn-default btn-lg btn-space" href="/" role="button"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></p>
+                    <div class="text-center"><a class="btn btn-primary btn-lg btn-space" href="/tables" role="button"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> View Tables</a>
+                        <a class="btn btn-default btn-lg btn-space" href="/" role="button"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></div>
                 </div>
             </div>
         </div>
@@ -42,12 +46,32 @@
                                 <label for="uniqueID">Unique ID</label>
                                 <input type="text" class="form-control" id="uniqueID">
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary" id="submitButton">Submit</button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+        <script>
+        $('#submitButton').on('click', function() {
+            var name = $('#name').val().trim();
+            var num = $('#phoneNumber').val().trim();
+            var email = $('#email').val().trim();
+            var id = $('#uniqueID').val().trim();
+
+            var newReservation = {
+                customerName: name,
+                email: email,
+                phone: num,
+                id: id
+            }
+
+            console.log(newReservation);
+
+            $.post('/api/new', newReservation);
+
+        });
+        </script>
         <div class="row">
             <div class="col-xs-12">
                 <a href="/api/tables" class="navbar-link">API Table Link</a> | <a href="/api/waitlist" class="navbar-link">API Wait List</a>
@@ -55,4 +79,5 @@
         </div>
     </div>
 </body>
+
 </html>

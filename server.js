@@ -55,3 +55,22 @@ function getWaitlist() {
             }
         });
 }
+
+app.post('/api/new', function(req, res) {
+   var reservation = req.body;
+
+   console.log(reservation);
+
+   addReservation(reservation);
+
+   res.json(reservation);
+});
+
+// adds new reservation to tables if length is < 5, else adds to waitlist
+function addReservation(newReservation) {
+   if (tables.length < 5) {
+       tables.push(newReservation);
+   } else {
+       waitlist.push(newReservation);
+   }
+}

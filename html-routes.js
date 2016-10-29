@@ -29,31 +29,12 @@ var htmlRoutes = function(app){
 	            }
 	        }
 	*/
-	        res.json(false);
+	        res.json(tables);
 	    } else {
 	        res.json(tables);
 	    }
 	});
 
-	app.post('/api/new', function (req, res) {
-		var reservation = req.body;
-		reservation.routeName = reservation.name.replace(/\s+/g, '').toLowerCase();
-
-		console.log(reservation);
-
-		addReservation(reservation);
-
-		res.json(reservation);
-	});
-
-// adds new reservation to tables if length is < 5, else adds to waitlist
-	function addReservation(newReservation) {
-	    if (tables.length < 5) {
-	        tables.push(newReservation);
-	    } else {
-	        waitlist.push(newReservation);
-	    }
-	}
 }
 
 module.exports = htmlRoutes;
