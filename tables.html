@@ -26,48 +26,45 @@
                         <!-- Table -->
                         <div id="table_list">
                         </div>
-                        <script>
-                        var myURL = window.location.origin;
-                        $.ajax({
-                                url: myURL + "/api/tables",
-                                method: "GET"
-                            })
-                            .done(function(tables) {
-                                console.log(tables);
-                                for (var i = 0; i < 5; i++) {
-
-                                    var newTable = '<div class="panel panel-default"><div class="panel-body">';
-                                    newTable += tables[i].id + '</div><div class="panel-body">' + tables[i].customerName + '</div><div class="panel-body">' + tables[i].email + '</div><div class="panel-body">' + tables[i].phone + '</div></div>';
-                                    $('#table_list').append(newTable);
-                                }
-                            });
-                        </script>
                         </table>
                     </div>
                     <div class="panel panel-default">
                         <div class="panel-heading"><b>Waiting List</b></div>
                         <div id="wait_list"></div>
                         <!-- Table -->
-                        <script>
-                        var myURL = window.location.origin;
-                        $.ajax({
-                                url: myURL + "/api/waitlist",
-                                method: "GET"
-                            })
-                            .done(function(waitlist) {
-                                for (var i = 0; i < waitlist.length; i++) {
-
-                                    var newTable = '<div class="panel panel-default"><div class="panel-body">';
-                                    newTable += waitlist[i].id + '</div><div class="panel-body">' + waitlist[i].customerName + '</div><div class="panel-body">' + waitlist[i].email + '</div><div class="panel-body">' + waitlist[i].phone + '</div></div>';
-                                    $('#wait_list').append(newTable);
-                                }
-                            });
-                        </script>
                     </div>
-                    <a href="#" class="navbar-link">API Table Link</a> | <a href="#" class="navbar-link">API Wait List</a>
+                    <a href="/api/tables" class="navbar-link">API Table Link</a> | <a href="api/waitlist" class="navbar-link">API Wait List</a>
                 </div>
             </div>
         </div>
+    <script>
+    var myURL = window.location.origin;
+    $.ajax({
+            url: myURL + "/api/tables",
+            method: "GET"
+        })
+        .done(function(tables) {
+            console.log(tables);
+            for (var i = 0; i < tables.length; i++) {
+
+                var newTable = '<div class="panel panel-default"><button type="button" class="btn btn-warning" id="customer"'+i+'>Remove</button><div class="panel-body">';
+                newTable += tables[i].id + '</div><div class="panel-body">' + tables[i].customerName + '</div><div class="panel-body">' + tables[i].email + '</div><div class="panel-body">' + tables[i].phone + '</div></div>';
+                $('#table_list').append(newTable);
+            }
+        });
+    $.ajax({
+            url: myURL + "/api/waitlist",
+            method: "GET"
+        })
+        .done(function(waitlist) {
+            for (var i = 0; i < waitlist.length; i++) {
+
+                var newTable = '<div class="panel panel-default"><div class="panel-body">';
+                newTable += waitlist[i].id + '</div><button type="button" class="btn btn-success" id="waitlist"'+ i +'>Add</button><div class="panel-body">' + waitlist[i].customerName + '</div><div class="panel-body">' + waitlist[i].email + '</div><div class="panel-body">' + waitlist[i].phone + '</div></div>';
+                $('#wait_list').append(newTable);
+            }
+        });
+    </script>
 </body>
 
 </html>
