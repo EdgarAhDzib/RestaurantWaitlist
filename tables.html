@@ -55,10 +55,10 @@
                                 method: "GET"
                             })
                             .done(function(waitlist) {
-                                for (var i = 5; i < tables.length; i++) {
+                                for (var i = 0; i < waitlist.length; i++) {
 
                                     var newTable = '<div class="panel panel-default"><div class="panel-body">';
-                                    newTable += tables[i].id + '</div><div class="panel-body">' + tables[i].customerName + '</div><div class="panel-body">' + tables[i].email + '</div><div class="panel-body">' + tables[i].phone + '</div></div>';
+                                    newTable += waitlist[i].id + '</div><div class="panel-body">' + waitlist[i].customerName + '</div><div class="panel-body">' + waitlist[i].email + '</div><div class="panel-body">' + waitlist[i].phone + '</div></div>';
                                     $('#wait_list').append(newTable);
                                 }
                             });
