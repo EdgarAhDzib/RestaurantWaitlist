@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Home Page</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="jumbotron">
+                    <h1 class="text-center"><span class="glyphicon glyphicon-fire" aria-hidden="true"></span> Hot Restaurant</h1>
+                    <hr>
+                    <h2 class="text-center">Current Reservations and Waiting List</h2>
+                    <br>
+                    <div class="text-center"><a class="btn btn-danger btn-lg" href="/reserve" role="button"><span class="glyphicon glyphicon-credit-card" aria-hidden="true"></span> Make Reservation</a>
+                    <a class="btn btn-lg btn-default" href="/" role="button"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> </a></div>
+                </div>
+                <div>
+                    <div class="panel panel-default">
+                        <!-- Default panel contents -->
+                        <div class="panel-heading"><b>Current Reservations</b></div>
+                        <!-- Table -->
+                        <div id="table_list">
+                        </div>
+                        <script>
+                        var myURL = window.location.origin;
+                        $.ajax({
+                                url: myURL + "/api/tables",
+                                method: "GET"
+                            })
+                            .done(function(tables) {
+                                for (var i = 0; i < tables.length; i++) {
+
+                                    var newTable = '<div class="panel panel-default"><div class="panel-body">';
+                                    newTable += tables[i].id + '</div></div>';
+                                    $('#table_list').append(newTable);
+                                }
+                            });
+                        </script>
+                        </table>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><b>Waiting List</b></div>
+                        <div id="wait_list"></div>
+                        <!-- Table -->
+                        <script>
+                        var myURL = window.location.origin;
+                        $.ajax({
+                                url: myURL + "/api/waitlist",
+                                method: "GET"
+                            })
+                            .done(function(waitlist) {
+                                for (var i = 0; i < waitlist.length; i++) {
+
+                                    var newTable = '<div class="panel panel-default"><div class="panel-body">';
+                                    newTable += waitlist[i].id + '</div></div>';
+                                    $('#wait_list').append(newTable);
+                                }
+                            });
+                        </script>
+                    </div>
+                    <a href="#" class="navbar-link">API Table Link</a> | <a href="#" class="navbar-link">API Wait List</a>
+                </div>
+            </div>
+        </div>
+</body>
+
+</html>
